@@ -288,6 +288,7 @@ header {
 .tag:hover { border-color: var(--accent); color: var(--accent); }
 
 .section        { margin-bottom: 28px; animation: fadeUp 0.6s ease 0.3s both; }
+
 .section-header {
   font-family: 'Syne', sans-serif;
   font-size: 1rem; font-weight: 700; margin-bottom: 16px;
