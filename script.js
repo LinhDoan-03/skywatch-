@@ -84,10 +84,13 @@ async function fetchCityData(query) {
     return `${String(d.getHours()).padStart(2, '0')}h`;
   });
 
+  const avgTemp = Math.round(hourlyTemps.reduce((a, b) => a + b, 0) / hourlyTemps.length);
+
   return {
     name:         `${weather.name}, ${weather.sys.country}`,
     temp:         Math.round(weather.main.temp),
     feels:        Math.round(weather.main.feels_like),
+    avgTemp,
     humidity:     weather.main.humidity,
     wind:         Math.round(weather.wind.speed),
     desc:         weather.weather[0].description,
@@ -200,7 +203,7 @@ function renderCurrent(key) {
   document.getElementById('tempBig').textContent     = `${d.temp}°C`;
   document.getElementById('humidity').textContent    = `${d.humidity}%`;
   document.getElementById('wind').textContent        = `${d.wind} m/s`;
-  document.getElementById('feelsLike').textContent   = `${d.feels}°C`;
+  document.getElementById('feelsLike').textContent   = `${d.avgTemp}°C`;
   const card = document.getElementById('currentCard');
   card.classList.remove('fade-in'); void card.offsetWidth; card.classList.add('fade-in');
 }
